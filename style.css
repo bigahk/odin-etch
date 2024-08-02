@@ -8,9 +8,17 @@ body {
 }
 #container {
   width: 960px;
-  height: 50vh;
+  height: 70vh;
   display: flex;
   border:solid;
   border-color: black;
   background-color: white;
+  justify-content: center;
+  /* align-items: center; */
+  flex-wrap: wrap;
+}
+
+.box {
+  /* border: solid */
+  /* background-color: salmon; */
 }
