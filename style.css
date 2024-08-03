@@ -1,8 +1,8 @@
 body {
   display: flex;
+  flex-direction: column;
+  justify-content: center;
   align-items: center;
-  justify-content:center;
-  align-content: center;
   height: 100vh;
   background-color: darkseagreen;
 }
@@ -18,7 +18,6 @@ body {
   flex-wrap: wrap;
 }
 
-.box {
-  /* border: solid */
-  /* background-color: salmon; */
+#prompt {
+  margin-bottom: 50px;
 }
