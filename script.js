@@ -1,5 +1,6 @@
 let squares = 16;
 let userInput;
+let hasClicked;
 
 
 function createBoxes() {
@@ -17,13 +18,14 @@ function createBoxes() {
             box.style.backgroundColor = "black";
         }
     }
+    document.getElementById("current-size").textContent = `The current grid size is ${squares}x${squares}.`
 }
 
 function callPrompt() {
     let question = prompt("You can choose how large the grid is! Enter a prompt between 1 and 100.")
     const promptButton = document.getElementById("prompt");
 
-    if (question !== null && isNaN(question) === false) {
+    if (question !== null && isNaN(question) === false && question <= 100) {
         squares = question;
         const deleteBoxes = document.querySelectorAll('.box');
         deleteBoxes.forEach(box => {
@@ -31,17 +33,59 @@ function callPrompt() {
         });
 
         createBoxes();
+    } else {
+        alert("Give me a number between 1 and 100, dumbass.")
     }
 }
 
 function clearAll() {
-   const boxes = document.getElementsByClassName("box");
+    const boxes = document.getElementsByClassName("box");
 
-   for (let i = 0; i <boxes.length; i++) {
-    boxes[i].style.backgroundColor = "white";
-   }
+    for (let i = 0; i < boxes.length; i++) {
+        boxes[i].style.backgroundColor = "white";
+    }
 
 }
 
+function eraserTool() {
+    const boxes = document.getElementsByClassName("box");
+
+    for (let i = 0; i < boxes.length; i++) {
+        boxes[i].addEventListener("mouseover", erase)
+
+
+    }
+    function erase() {
+        this.style.backgroundColor = "white";
+    };
+}
+
+function createButton() {
+
+    if (hasClicked === true) {
+        return;
+    } else {
+        const newButton = document.createElement("button");
+        newButton.id = "write-button";
+        newButton.textContent = "Pen";
+        newButton.type = "button"
+        newButton.addEventListener("click", pen)
+        function pen() {
+            const boxes = document.getElementsByClassName("box");
+
+            for (let i = 0; i < boxes.length; i++) {
+                boxes[i].addEventListener("mouseover", write)
+
+
+            }
+            function write() {
+                this.style.backgroundColor = "black";
+            };
+        }
+        hasClicked = true
+        document.getElementById("btn-container").appendChild(newButton);
+        console.log(hasClicked);
+    }
+}
 
 createBoxes();
